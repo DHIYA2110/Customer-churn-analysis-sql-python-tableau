@@ -56,7 +56,7 @@ Primary key: `clientnum`. Churn flag used in calculations: rows with `Attrition 
 ### KPI overview  
 High-level snapshot of the business health: total customers, average customer age, average transaction amounts, average transaction amount for churned customers, and overall churn rate.
 
-![KPI cards](screenshot_kpi.png)
+![KPI cards](screenshot_kpis.png)
 
 **Why this matters:** These KPIs let leadership quickly judge the problem scale (16% churn) and coarse behavioral differences (churners have lower average spend).
 
