@@ -58,7 +58,7 @@ High-level snapshot of the business health: total customers, average customer ag
 
 ![KPI cards](screenshot_kpis.png)
 
-**Why this matters:** These KPIs let leadership quickly judge the problem scale (16% churn) and coarse behavioral differences (churners have lower average spend).
+ **These KPIs let leadership quickly judge the problem scale (16% churn) and coarse behavioral differences (churners have lower average spend).**
 
 ---
 
@@ -67,7 +67,7 @@ This section provides a table summary (age bins × gender) and a grouped bar cha
 
 ![Summary & Relationship](screenshot_summary_relationship.png)
 
-**What to look for:** churn concentration by age/gender and whether churn peaks in a particular tenure window (helpful for retention nudges timed to lifecycle).
+**churn concentration by age/gender and whether churn peaks in a particular tenure window (helpful for retention nudges timed to lifecycle).**
 
 ---
 
