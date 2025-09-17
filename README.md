@@ -1,15 +1,21 @@
 # Dollar Bank — Customer Churn Analysis (SQL • Python • Tableau)
 
-**Project summary (one-line):** End-to-end analysis combining SQL, Python, and Tableau to identify which customers are leaving Dollar Bank's credit-card product, why they leave, and which interventions will most cost-effectively reduce churn.
+## Introduction
+Dollar Bank asked for an analysis to understand why customers were leaving its credit card product and how losses can be reduced. This project joins three datasets, performs EDA and feature engineering in Python, and implements a polished, interactive Tableau dashboard that surfaces the key churn drivers and highest-impact customer segments.
+
+
+**Project summary :**
+
+**End-to-end analysis combining SQL, Python, and Tableau to identify which customers are leaving Dollar Bank's credit-card product, why they leave, and which interventions will most cost-effectively reduce churn.**
 
 ---
 
-## Problem statement (stakeholder view)
+## Problem statement 
+
 Dollar Bank noticed an increasing number of customers leaving their credit card program. The business question for this project:
 
 > **Which customer segments are churning, what behaviors and attributes are associated with churn, and where should the bank focus retention efforts to get the largest impact?**
 
-Stakeholders want a prioritized set of actions they can run quickly (marketing, offers, communications) to reduce churn and protect revenue.
 
 ---
 
@@ -30,7 +36,7 @@ Primary key: `clientnum`. Churn flag used in calculations: rows with `Attrition 
 
 ---
 
-## Methodology (brief, reproducible)
+## Methodology
 1. **Data validation & join (SQL)** — checked row counts, uniqueness of `clientnum`, validated joins, ensured no unintentional duplicates.  
 2. **Python EDA** — cleaned missing values, created age bins and months-on-book buckets, computed client-level aggregates (ensuring one row per client for the dashboard), explored distributions, and verified potential predictors of churn (spend, transactions, tenure, demographics).  
 3. **Tableau dashboard** — created KPIs, heatmap (education × income churn), churn-by-tenure (months on book) grouped by gender, scatterplot (Total Transaction Amount vs Total Transaction Count colored by churn), and Pareto analyses for prioritization.
@@ -45,12 +51,12 @@ Primary key: `clientnum`. Churn flag used in calculations: rows with `Attrition 
 
 ---
 
-## Dashboard & visuals — narrative + images
+## Dashboard & visuals
 
 ### KPI overview  
 High-level snapshot of the business health: total customers, average customer age, average transaction amounts, average transaction amount for churned customers, and overall churn rate.
 
-![KPI cards](screenshots/screenshot_kpi.png)
+![KPI cards](screenshot_kpi.png)
 
 **Why this matters:** These KPIs let leadership quickly judge the problem scale (16% churn) and coarse behavioral differences (churners have lower average spend).
 
@@ -68,7 +74,7 @@ This section provides a table summary (age bins × gender) and a grouped bar cha
 ### Churn by card type & spending behavior  
 Contains counts of churned customers by card type and demographic segments plus a scatterplot of **Total Transaction Amount ($)** vs **Total Transaction Count**, colored by churn status.
 
-![Card type & Spending vs Churn](screenshots/screenshot_spend_cardtype.png)
+![Card type & Spending vs Churn](screenshot_spend_cardtype.png)
 
 **Key insight:** churned customers cluster at **lower total spend and lower transaction counts** — an actionable signal to design transaction-based incentives.
 
@@ -77,7 +83,7 @@ Contains counts of churned customers by card type and demographic segments plus 
 ### Churn by education & age  
 A heatmap shows churn rate by **Education Level (rows)** × **Income Category (columns)**; adjacent is churn rate by age group.
 
-![Education × Income & Age groups](screenshots/screenshot_edu_age.png)
+![Education × Income & Age groups](screenshot_edu_age.png)
 
 **Business value:** identifies demographic intersections (education × income) with elevated churn rates — valuable for targeted campaigns or product design testing.
 
@@ -86,7 +92,7 @@ A heatmap shows churn rate by **Education Level (rows)** × **Income Category (c
 ### Pareto analysis: segments & churn concentration  
 Pareto charts show which combinational segments (Gender + Education + Marital Status) represent the majority of customers and which account for most churn.
 
-![Pareto: clients vs churned](screenshots/screenshot_pareto_clients_churned.png)
+![Pareto: clients vs churned](screenshot_pareto_clients_churned.png)
 
 **Why Pareto helps:** it reveals the “vital few” segments responsible for a large share of churn — focusing on these segments yields the greatest ROI for retention spend.
 
