@@ -45,6 +45,7 @@ Dollar Bank asked for an analysis to understand why customers were leaving its c
 ## Dashboard & Visuals (what to look at)
 
 ### KPI overview
+
 ![KPI cards](screenshots/screenshot_kpi.png)
 
 **What it shows**: total customers (~10K), average age (46 yrs), average transaction amount (all customers ≈ $4,404), average for churned customers ≈ $3,095, and overall churn ≈ 16%.
@@ -52,6 +53,7 @@ Dollar Bank asked for an analysis to understand why customers were leaving its c
 ---
 
 ### Customer Churn Summary & Relationship period
+
 ![Summary & Relationship](screenshots/screenshot_summary_relationship.png)
 
 **What it shows**: a detailed churn summary table split by age group and gender, and a grouped bar chart of churn by relationship period (Mid-Term, Established, Long-Term, Very-Long-Term) split by gender. This helps identify whether churn concentrates at a particular customer tenure.
