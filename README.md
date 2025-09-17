@@ -1,110 +1,125 @@
 # Dollar Bank — Customer Churn Analysis (SQL • Python • Tableau)
 
-**End-to-end project:** exploratory analysis with SQL, a deep-dive EDA with Python, and an interactive Tableau dashboard to present actionable business insights.
+**Project summary (one-line):** End-to-end analysis combining SQL, Python, and Tableau to identify which customers are leaving Dollar Bank's credit-card product, why they leave, and which interventions will most cost-effectively reduce churn.
 
 ---
 
-## Table of contents
-- [Introduction](#introduction)  
-- [Repository structure](#repository-structure)  
-- [Data](#data)  
-- [Methodology](#methodology)  
-- [Dashboard & Visuals (what to look at)](#dashboard--visuals-what-to-look-at)  
-- [Key findings & insights](#key-findings--insights)  
-- [Recommendations](#recommendations)  
-- [How to run the analysis (quick)](#how-to-run-the-analysis-quick)  
-- [Screenshots](#screenshots)  
-- [License & notes](#license--notes)
+## Problem statement (stakeholder view)
+Dollar Bank noticed an increasing number of customers leaving their credit card program. The business question for this project:
+
+> **Which customer segments are churning, what behaviors and attributes are associated with churn, and where should the bank focus retention efforts to get the largest impact?**
+
+Stakeholders want a prioritized set of actions they can run quickly (marketing, offers, communications) to reduce churn and protect revenue.
 
 ---
 
-## Introduction
-Dollar Bank asked for an analysis to understand why customers were leaving its credit card product and how losses can be reduced. This project joins three datasets, performs EDA and feature engineering in Python, and implements a polished, interactive Tableau dashboard that surfaces the key churn drivers and highest-impact customer segments.
+## What I delivered
+- A reproducible data pipeline (CSV → cleaned dataset) and exploratory analysis in **Python**.  
+- A set of analytical SQL queries used to validate joins, counts, and aggregated metrics.  
+- A production-style **Tableau dashboard** that contains KPI cards, demographic heatmaps, churn-by-tenure visualizations, spending-vs-churn scatter plots, and Pareto charts that identify the “vital few” segments to focus on.
 
 ---
 
+## Data sources
+Files are included under `data/`:
+- `bankchurners.csv` — account and churn flag metadata (attrition flag, months_on_book, card_category, credit_limit, contact_count).  
+- `basic_client_info.csv` — demographic attributes (gender, education_level, income_category, marital_status, customer_age).  
+- `enriched_churn_data.csv` — transaction aggregates (total_transaction_amount, total_transaction_count, Q4→Q1 change features, etc.).
 
-
-
-## Data
-- `bankchurners.csv` — account & churn flags, months-on-book, card category, credit limit, contact counts.  
-- `basic_client_info.csv` — demographics: `gender`, `education_level`, `income_category`, `marital_status`, `customer_age`.  
-- `enriched_churn_data.csv` — aggregated transaction metrics per client (total transaction amount, count, change metrics).
-
-**Churn definition:** `Attrited Customer` flag in `bankchurners.csv`. When computing rates in the dashboard we use distinct clients (`COUNTD(clientnum)`) to avoid double counting.
+Primary key: `clientnum`. Churn flag used in calculations: rows with `Attrition Flag = 'Attrited Customer'` are treated as churned.
 
 ---
 
-## Methodology
-1. **SQL**: use SELECT/joins to understand row counts and to produce a clean combined table for analysis.  
-2. **Python**: deep-dive EDA (Pandas), data cleaning, distribution checks, correlation checks, and feature creation (age bins, months-on-book buckets, churn flag, LOD-like client aggregates where needed).  
-3. **Tableau**: build interactive visuals — KPI cards, heatmaps, grouped bar charts with gender, scatterplots with trend lines, and Pareto analyses — and assemble into a dashboard for stakeholder consumption.
+## Methodology (brief, reproducible)
+1. **Data validation & join (SQL)** — checked row counts, uniqueness of `clientnum`, validated joins, ensured no unintentional duplicates.  
+2. **Python EDA** — cleaned missing values, created age bins and months-on-book buckets, computed client-level aggregates (ensuring one row per client for the dashboard), explored distributions, and verified potential predictors of churn (spend, transactions, tenure, demographics).  
+3. **Tableau dashboard** — created KPIs, heatmap (education × income churn), churn-by-tenure (months on book) grouped by gender, scatterplot (Total Transaction Amount vs Total Transaction Count colored by churn), and Pareto analyses for prioritization.
+4. **Interpretation & recommendations** — translated findings into prioritized actions with expected ROI.
 
 ---
 
-## Dashboard & Visuals (what to look at)
+## How this solves the business problem
+- It identifies the **highest-impact segments** (vital few) so retention resources can be focused.  
+- It surfaces **behavioral signals** (low total spend and low transaction count) that are actionable — e.g., targeted rewards to increase activity.  
+- It clarifies **tenure risk** windows (25–48 months) where targeted outreach can be most effective.
 
-### KPI overview
+---
+
+## Dashboard & visuals — narrative + images
+
+### KPI overview  
+High-level snapshot of the business health: total customers, average customer age, average transaction amounts, average transaction amount for churned customers, and overall churn rate.
 
 ![KPI cards](screenshots/screenshot_kpi.png)
 
-**What it shows**: total customers (~10K), average age (46 yrs), average transaction amount (all customers ≈ $4,404), average for churned customers ≈ $3,095, and overall churn ≈ 16%.
+**Why this matters:** These KPIs let leadership quickly judge the problem scale (16% churn) and coarse behavioral differences (churners have lower average spend).
 
 ---
 
-### Customer Churn Summary & Relationship period
+### Customer churn summary & relationship period  
+This section provides a table summary (age bins × gender) and a grouped bar chart of churn rate by tenure buckets (Mid-Term / Established / Long-Term / Very-Long-Term), split by gender.
 
 ![Summary & Relationship](screenshots/screenshot_summary_relationship.png)
 
-**What it shows**: a detailed churn summary table split by age group and gender, and a grouped bar chart of churn by relationship period (Mid-Term, Established, Long-Term, Very-Long-Term) split by gender. This helps identify whether churn concentrates at a particular customer tenure.
+**What to look for:** churn concentration by age/gender and whether churn peaks in a particular tenure window (helpful for retention nudges timed to lifecycle).
 
 ---
 
-### Churn by card type & spending behavior
+### Churn by card type & spending behavior  
+Contains counts of churned customers by card type and demographic segments plus a scatterplot of **Total Transaction Amount ($)** vs **Total Transaction Count**, colored by churn status.
+
 ![Card type & Spending vs Churn](screenshots/screenshot_spend_cardtype.png)
 
-**What it shows**: counts of churned customers by card type and demographics, and a scatterplot of `Total Transaction Amount ($)` vs `Total Transaction Count` (blue = churned, orange = existing). The scatter shows churners cluster at lower transaction counts and amounts.
+**Key insight:** churned customers cluster at **lower total spend and lower transaction counts** — an actionable signal to design transaction-based incentives.
 
 ---
 
-### Churn by education & age
+### Churn by education & age  
+A heatmap shows churn rate by **Education Level (rows)** × **Income Category (columns)**; adjacent is churn rate by age group.
+
 ![Education × Income & Age groups](screenshots/screenshot_edu_age.png)
 
-**What it shows**: (left) heatmap of churn rate (%) by `Education Level` (rows) × `Income Category` (columns); (right) churn rate by age bins (20s, 30s, 40s, ...). Useful for demographic targeting.
+**Business value:** identifies demographic intersections (education × income) with elevated churn rates — valuable for targeted campaigns or product design testing.
 
 ---
 
-### Pareto analysis — segments & churn concentration
+### Pareto analysis: segments & churn concentration  
+Pareto charts show which combinational segments (Gender + Education + Marital Status) represent the majority of customers and which account for most churn.
+
 ![Pareto: clients vs churned](screenshots/screenshot_pareto_clients_churned.png)
 
-**What it shows**: Pareto charts with segments created from combinations of `Gender`, `Education Level`, and `Marital Status`. They reveal which small set of segments generate the majority of churn (the "vital few").
+**Why Pareto helps:** it reveals the “vital few” segments responsible for a large share of churn — focusing on these segments yields the greatest ROI for retention spend.
 
 ---
 
-## Key findings & insights
-- **Overall churn ~16%** — substantial and worth addressing.  
-- **Lower spenders churn more** — churned customers have average transaction amounts ~\$3.1k vs \$4.4k for overall customers; churners often have <100 transactions.  
-- **Demographic hotspots** — female customers 41–50 and certain education×income intersections show elevated churn.  
-- **Relationship-period risk** — established (25–36 months) and long-term (37–48 months) buckets show notable churn in several cohorts.  
-- **Pareto insight** — a small set of segments (female graduates; male graduates single) account for a disproportionate share of churn.
+## Key findings (concise & prioritized)
+1. **Overall churn ~ 16%** (meaningful loss; one in six customers leaving).  
+2. **Lower spenders and low-activity customers churn more** — churners average ≈ $3,095 total spend vs ≈ $4,404 overall. Many churners performed fewer than 100 transactions.  
+3. **Tenure risk window** — customers in the Established (25–36 months) and Long-Term (37–48 months) buckets show elevated churn. Consider lifecycle outreach at 18–36 months.  
+4. **Demographic hotspots** — female customers ages 41–50 and certain education×income combinations show higher churn rates.  
+5. **Pareto segments (vital few)** — a small number of segments (female graduates — married & single; male graduates single) generate a disproportionate share of churn.
 
 ---
 
-## Recommendations
-1. Target high-churn segments with tailored retention offers.  
-2. Offer activity incentives for low-activity customers (increase transaction frequency).  
-3. Implement milestone outreach for customers around 24–36 months tenure.  
-4. A/B test retention offers for top 3 churn-driving segments.
+## Recommendations (actionable, prioritized)
+**Tier 1 (highest ROI):**
+- Run targeted retention offers for the Pareto segments (female graduates; male graduate single). Use personalized reward incentives.  
+- Launch transaction-incentive pilots (e.g., reward points for repeat transactions) targeted to low-activity customers.
+
+**Tier 2:**
+- Lifecycle outreach for customers nearing 24–36 months on book (special retention offers or check-in calls).  
+- Product or service audits for lower-income graduate segments that show high churn (offers/repricing).
+
+**Tier 3 (test & learn):**
+- A/B test different incentives (cashback vs points vs fee waiver) and measure retention lift on pilot cohorts.
 
 ---
 
-## How to run the analysis (quick)
-1. Open `notebooks/customer_churn.ipynb` in Jupyter Lab / VS Code.  
-2. Ensure the CSVs are in `data/` (same path the notebook expects).  
-3. Install required packages:
-```bash
-pip install pandas numpy matplotlib seaborn jupyterlab
+## How to run / reproduce
+1. Place CSVs in `data/` (already done): `bankchurners.csv`, `basic_client_info.csv`, `enriched_churn_data.csv`.  
+2. Open `notebooks/customer_churn.ipynb` and run the cells — this notebook contains cleaning steps and summary queries.  
+3. Open Tableau, connect to the joined dataset (or the `enriched_churn_data.csv` if it has client-level aggregates), and open the dashboard workbook. The README screenshots are taken from that dashboard.
 
+---
 
-## Repository structure
-
+## Files & structure (what to include in the repo)
