@@ -59,7 +59,7 @@ High-level snapshot of the business health: total customers, average customer ag
 ### Customer churn summary & relationship period  
 This section provides a table summary (age bins × gender) and a grouped bar chart of churn rate by tenure buckets (Mid-Term / Established / Long-Term / Very-Long-Term), split by gender.
 
-![Summary & Relationship](screenshots/screenshot_summary_relationship.png)
+![Summary & Relationship](screenshot_summary_relationship.png)
 
 **What to look for:** churn concentration by age/gender and whether churn peaks in a particular tenure window (helpful for retention nudges timed to lifecycle).
 
