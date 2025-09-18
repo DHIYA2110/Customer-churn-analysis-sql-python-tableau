@@ -27,7 +27,7 @@ Dollar Bank noticed an increasing number of customers leaving their credit card 
 ---
 
 ## Data sources
-Files are included under `data/`:
+Files are included under `datasets/`:
 - `bankchurners.csv` — account and churn flag metadata (attrition flag, months_on_book, card_category, credit_limit, contact_count).  
 - `basic_client_info.csv` — demographic attributes (gender, education_level, income_category, marital_status, customer_age).  
 - `enriched_churn_data.csv` — transaction aggregates (total_transaction_amount, total_transaction_count, Q4→Q1 change features, etc.).
@@ -122,8 +122,8 @@ Pareto charts show which combinational segments (Gender + Education + Marital St
 ---
 
 ## How to run / reproduce
-1. Place CSVs in `data/` (already done): `bankchurners.csv`, `basic_client_info.csv`, `enriched_churn_data.csv`.  
-2. Open `notebooks/customer_churn.ipynb` and run the cells — this notebook contains cleaning steps and summary queries.  
+1. Place CSVs in `datasets/` (already done): `bankchurners.csv`, `basic_client_info.csv`, `enriched_churn_data.csv`.  
+2. Open `assets/customer_churn.ipynb` and run the cells — this notebook contains cleaning steps and summary queries.  
 3. Open Tableau, connect to the joined dataset (or the `enriched_churn_data.csv` if it has client-level aggregates), and open the dashboard workbook. The README screenshots are taken from that dashboard.
 
 ---
