@@ -4,7 +4,7 @@
 Dollar Bank asked for an analysis to understand why customers were leaving its credit card product and how losses can be reduced. This project joins three datasets, performs EDA and feature engineering in Python, and implements a polished, interactive Tableau dashboard that surfaces the key churn drivers and highest-impact customer segments.
 
 
-**Project summary :**
+## Project summary :
 
 **End-to-end analysis combining SQL, Python, and Tableau to identify which customers are leaving Dollar Bank's credit-card product, why they leave, and which interventions will most cost-effectively reduce churn.**
 
@@ -74,7 +74,7 @@ This section provides a table summary (age bins × gender) and a grouped bar cha
 ### Churn by card type & spending behavior  
 Contains counts of churned customers by card type and demographic segments plus a scatterplot of **Total Transaction Amount ($)** vs **Total Transaction Count**, colored by churn status.
 
-![Card type & Spending vs Churn](screenshot_spend_cardtype.png)
+![Card type & Spending vs Churn](images/screenshot_spend_cardtype.png)
 
 **Key insight:** churned customers cluster at **lower total spend and lower transaction counts** — an actionable signal to design transaction-based incentives.
 
@@ -83,7 +83,7 @@ Contains counts of churned customers by card type and demographic segments plus 
 ### Churn by education & age  
 A heatmap shows churn rate by **Education Level (rows)** × **Income Category (columns)**; adjacent is churn rate by age group.
 
-![Education × Income & Age groups](screenshot_edu_age.png)
+![Education × Income & Age groups](images/screenshot_edu_age.png)
 
 **Business value:** identifies demographic intersections (education × income) with elevated churn rates — valuable for targeted campaigns or product design testing.
 
@@ -92,7 +92,7 @@ A heatmap shows churn rate by **Education Level (rows)** × **Income Category (c
 ### Pareto analysis: segments & churn concentration  
 Pareto charts show which combinational segments (Gender + Education + Marital Status) represent the majority of customers and which account for most churn.
 
-![Pareto: clients vs churned](screenshot_pareto_clients_churned.png)
+![Pareto: clients vs churned](images/screenshot_pareto_clients_churned.png)
 
 **Why Pareto helps:** it reveals the “vital few” segments responsible for a large share of churn — focusing on these segments yields the greatest ROI for retention spend.
 
@@ -128,4 +128,4 @@ Pareto charts show which combinational segments (Gender + Education + Marital St
 
 ---
 
-## Files & structure (what to include in the repo)
+
