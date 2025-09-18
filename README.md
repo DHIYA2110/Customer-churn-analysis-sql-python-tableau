@@ -16,7 +16,7 @@ Dollar Bank noticed an increasing number of customers leaving their credit card 
 
 > **Which customer segments are churning, what behaviors and attributes are associated with churn, and where should the bank focus retention efforts to get the largest impact?**
 
-
+[ click here to see the [TABLEAU DASHBOARD](https://public.tableau.com/app/profile/dhiya.m1679/viz/CHURNDASH/Dashboard1?publish=yes) ]
 ---
 
 ## What I delivered
@@ -56,7 +56,7 @@ Primary key: `clientnum`. Churn flag used in calculations: rows with `Attrition 
 ### KPI overview  
 High-level snapshot of the business health: total customers, average customer age, average transaction amounts, average transaction amount for churned customers, and overall churn rate.
 
-![KPI cards](screenshot_kpis.png)
+![KPI cards](images/screenshot_kpis.png)
 
  **These KPIs let leadership quickly judge the problem scale (16% churn) and coarse behavioral differences (churners have lower average spend).**
 
@@ -65,7 +65,7 @@ High-level snapshot of the business health: total customers, average customer ag
 ### Customer churn summary & relationship period  
 This section provides a table summary (age bins × gender) and a grouped bar chart of churn rate by tenure buckets (Mid-Term / Established / Long-Term / Very-Long-Term), split by gender.
 
-![Summary & Relationship](screenshot_summary_relationship.png)
+![Summary & Relationship](images/screenshot_summary_relationship.png)
 
 **churn concentration by age/gender and whether churn peaks in a particular tenure window (helpful for retention nudges timed to lifecycle).**
 
